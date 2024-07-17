@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "984648810613",
+    "project_id": "liveasy-9fc0f",
+    "storage_bucket": "liveasy-9fc0f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:984648810613:android:631c5daf91a9af8355383c",
+        "android_client_info": {
+          "package_name": "com.pst.spotify"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9rv9IQ27oDZSc8phxkAVkYGKCaGqJG3o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
