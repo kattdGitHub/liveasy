@@ -1,4 +1,4 @@
-package com.pst.spotify
+package com.pst.liveasy
 
 import io.flutter.embedding.android.FlutterActivity
 

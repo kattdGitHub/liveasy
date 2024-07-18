@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
+
 
 // Todo: must be false on last app release Bundle time
 /// we can see app log using this cmd in terminal
@@ -21,9 +23,13 @@ void errorLog(
     }) {
   if (customDebugMode) {
     if (Platform.isIOS) {
-      print("$fun ()=> ${text.toString()}");
+      if (kDebugMode) {
+        print("$fun ()=> ${text.toString()}");
+      }
     } else {
-      print('\x1B[32m${"$fun () => "}\x1B[0m\x1B[31m${text.toString()}\x1B[0m');
+      if (kDebugMode) {
+        print('\x1B[32m${"$fun () => "}\x1B[0m\x1B[31m${text.toString()}\x1B[0m');
+      }
     }
   }
 }
