@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:liveasy/all_screen/otp_screen.dart';
-import 'package:liveasy/auth/phone_number_cubit/phone_number_cubit.dart';
+import 'package:liveasy/business_logic/phone_number_cubit/phone_number_cubit.dart';
 import 'package:liveasy/utils/custom_button.dart';
+import 'package:liveasy/utils/custom_snackBar.dart';
 import 'package:liveasy/utils/notifier.dart';
 
 class MobileNumberScreen extends StatelessWidget {
   final TextEditingController phoneController = TextEditingController();
 
   final fromKey = GlobalKey<FormState>();
+
+  MobileNumberScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -75,6 +78,7 @@ class MobileNumberScreen extends StatelessWidget {
               BlocConsumer<PhoneNumberCubit, PhoneNumberState>(
                 listener: (context, state) {
                   if (state is PhoneNumberSuccess) {
+                    showCustomSnackBar(context, "Otp send successfully");
                     context.push(
                       VerifyPhoneScreen(
                         phoneController: phoneController,
@@ -82,10 +86,13 @@ class MobileNumberScreen extends StatelessWidget {
                       ),
                     );
                   }
+                  if (state is PhoneNumberError) {
+                    showCustomSnackBar(context, state.error, isError: true);
+                  }
                 },
                 builder: (context, state) {
                   return CustomButton(
-                    loading: state is MobileNumberScreen,
+                    loading: state is PhoneNumberLoading,
                     title: "Continue",
                     onPressed: () {
                       if (fromKey.currentState?.validate() ?? false) {
