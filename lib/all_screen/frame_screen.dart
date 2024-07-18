@@ -14,30 +14,28 @@ class FrameScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
+        child: SingleChildScrollView(
+            child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            SizedBox(
+              height: 100.h,
+            ),
             Icon(
               Icons.image_outlined,
               size: 100.w,
-            ).sizedHeight(
-              20.h,
             ),
             CustomText(
               text: "Please select your language",
               fontWeight: FontWeight.bold,
               fontSize: 20.sp,
               textAlign: TextAlign.center,
-            ).sizedHeight(
-              10.h,
             ),
             CustomText(
               text: "You can change the language \nat any time",
               fontSize: 15.sp,
               color: Colors.black,
               fontWeight: FontWeight.w400,
-            ).sizedHeight(
-              10.h,
             ),
             Container(
               height: 50.h,
@@ -70,12 +68,12 @@ class FrameScreen extends StatelessWidget {
               },
             )
           ],
+        ).paddingSymmetric(
+          horizontal: 20.w,
         )
-            .paddingSymmetric(
-              horizontal: 20.w,
-            )
-            .sizedHeight(
-              100.h,
+            // .sizedHeight(
+            //   100.h,
+            // ),
             ),
       ),
     );

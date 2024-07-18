@@ -26,9 +26,7 @@ class ProfileScreen extends StatelessWidget {
                 text: "Please select your profile",
                 fontSize: 20.sp,
                 fontWeight: FontWeight.w700,
-              ).sizedHeight(
-                30.h,
-              ),
+              ).paddingOnly(bottom: 30.h),
               HomeCustomBox(
                 title: "Shipper",
                 imagePath: "assets/shop.jpeg",

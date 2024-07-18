@@ -60,23 +60,6 @@ class VerifyPhoneScreen extends StatelessWidget {
                       .signInWithPhoneNumber(verificationId, value);
                 },
               ),
-
-              // Center(
-              //   child: GestureDetector(
-              //     onTap: () => _verifyPhoneNumber(context),
-              //     child: Text.rich(
-              //       TextSpan(text: "Didn't receive the code? ", children: [
-              //         TextSpan(
-              //           text: "Request Again",
-              //           style: TextStyle(
-              //             color: Colors.black,
-              //             fontSize: 18.sp,
-              //           ),
-              //         )
-              //       ]),
-              //     ),
-              //   ),
-              // ),
               CustomRichText(
                 onTap: () => _verifyPhoneNumber(context),
                 text: "Didn't receive the code? ",
