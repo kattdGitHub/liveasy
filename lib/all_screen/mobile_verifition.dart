@@ -38,11 +38,15 @@ class MobileNumberScreen extends StatelessWidget {
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                 ),
-                CustomText(
-                  text: "You'll receive a 6 digit code \nto verify next.",
-                  fontSize: 15.sp,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.grey,
+                Row(mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CustomText(
+                      text: "You'll receive a 6 digit code \nto verify next.",
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.grey,
+                    ),
+                  ],
                 ),
                 Row(
                   children: [

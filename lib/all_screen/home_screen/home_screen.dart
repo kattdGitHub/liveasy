@@ -1,81 +1,82 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:liveasy/all_screen/frame_screen.dart';
+import 'package:liveasy/utils/custom_snackBar.dart';
 import 'package:liveasy/utils/custom_text.dart';
 import 'package:liveasy/utils/sized_box.dart';
-import 'package:provider/provider.dart'; // Import Provider package
-import 'package:liveasy/all_screen/frame_screen.dart';
 import 'package:liveasy/utils/custom_button.dart';
 import 'package:liveasy/utils/notifier.dart';
+import 'home_custom_box.dart';
 
-part 'home_custom_box.dart';
+class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({Key? key}) : super(key: key);
 
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({
-    super.key,
-  });
+  @override
+  _ProfileScreenState createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  String selectedProfile = '';
+
+  void selectProfile(String profile) {
+    setState(() {
+      selectedProfile = profile;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Consumer<ProfileSelectionProvider>(
-        builder: (context, provider, _) {
-          return Column(
-            children: [
-              CustomText(
-                text: "Please select your profile",
-                fontSize: 20.sp,
-                fontWeight: FontWeight.w700,
-              ).paddingOnly(bottom: 30.h),
-              HomeCustomBox(
-                title: "Shipper",
-                imagePath: "assets/shop.jpeg",
-                isSelected: provider.isSelected1,
-                onTap: () => provider.toggleSelection1(),
-              ).sizedHeight(25.h),
-              HomeCustomBox(
-                title: "Transport",
-                imagePath: "assets/transport.jpeg",
-                isSelected: provider.isSelected2,
-                onTap: () => provider.toggleSelection2(),
-              ),
-              SizedBox(height: 40.h),
-              CustomButton(
-                title: "CONTINUE",
-                onPressed: () {
-                  if (provider.isSelected1 && provider.isSelected2) {
-                    Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(builder: (_) => FrameScreen()),
-                      (route) => false,
-                    );
-                  }
-                },
-              ),
-            ],
-          )
-              .paddingSymmetric(vertical: 15.h, horizontal: 15.w)
-              .sizedHeight(40.h);
-        },
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            CustomText(
+              text: "Please select your profile",
+              fontSize: 20.sp,
+              fontWeight: FontWeight.w700,
+              color: Colors.black,
+            ),
+            SizedBox(
+              height: 20.h,
+            ),
+            HomeCustomBox(
+              title: "Shipper",
+              imagePath: "assets/shop.jpeg",
+              isSelected: selectedProfile == "Shipper",
+              onTap: () {
+                selectProfile("Shipper");
+              },
+            ),
+            SizedBox(height: 30.h),
+            HomeCustomBox(
+              title: "Transport",
+              imagePath: "assets/transport.jpeg",
+              isSelected: selectedProfile == "Transport",
+              onTap: () {
+                selectProfile("Transport");
+              },
+            ),
+            SizedBox(height: 40.h),
+            CustomButton(
+              title: "CONTINUE",
+              onPressed: () {
+                if (selectedProfile.isNotEmpty) {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => FrameScreen()),
+                        (Route<dynamic> route) => false,
+                  );
+                } else {
+                  showCustomSnackBar(context, "Please select a profile");
+                }
+              },
+            ),
+          ],
+        ).paddingSymmetric(
+          horizontal: 15.w,
+        ),
       ),
     );
-  }
-}
-
-class ProfileSelectionProvider with ChangeNotifier {
-  bool _isSelected1 = false;
-  bool _isSelected2 = false;
-
-  bool get isSelected1 => _isSelected1;
-
-  bool get isSelected2 => _isSelected2;
-
-  void toggleSelection1() {
-    _isSelected1 = !_isSelected1;
-    notifyListeners();
-  }
-
-  void toggleSelection2() {
-    _isSelected2 = !_isSelected2;
-    notifyListeners();
   }
 }

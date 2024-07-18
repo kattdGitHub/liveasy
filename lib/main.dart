@@ -30,19 +30,12 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) {
         return BlocProvider(
-          create: (context) => PhoneNumberCubit(),
-          child: MultiProvider(
-            providers: [
-              ChangeNotifierProvider<ProfileSelectionProvider>(
-                  create: (_) => ProfileSelectionProvider()),
-            ],
+            create: (context) => PhoneNumberCubit(),
             child: MaterialApp(
               debugShowCheckedModeBanner: false,
               title: 'Liveasy',
-              home: FrameScreen(),
-            ),
-          ),
-        );
+              home: ProfileScreen(),
+            ));
       },
     );
   }
