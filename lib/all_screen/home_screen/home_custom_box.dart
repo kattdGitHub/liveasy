@@ -13,6 +13,7 @@ class HomeCustomBox extends StatelessWidget {
     required this.isSelected,
     required this.onTap,
   });
+  const HomeCustomBox({super.key,  required this.title, required this.imagePath, required this.isSelected, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
